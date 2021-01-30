@@ -62,7 +62,7 @@ namespace EarTrumpet.UI.ViewModels
         internal AppItemViewModel(DeviceViewModel parent, IAudioDeviceSession session, bool isChild = false) : base(session)
         {
             IsExpanded = isChild;
-            IsHidden = StorageFactory.GetSettings().Get("HIDDEN_APPS", new List<string>()).Contains(session.AppId);
+            IsHidden = StorageFactory.GetSettings().Get("HIDDEN_APPS", new List<string>()).Contains(session.ExeName);
 
             _session = session;
             _session.PropertyChanged += Session_PropertyChanged;

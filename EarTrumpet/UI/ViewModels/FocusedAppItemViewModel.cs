@@ -24,6 +24,7 @@ namespace EarTrumpet.UI.ViewModels
 
             Toolbar = new ObservableCollection<ToolbarItemViewModel>();
 
+            // Option to Hide an App
             Toolbar.Add(new ToolbarItemViewModel
             {
                 GlyphFontSize = 10,
@@ -34,15 +35,18 @@ namespace EarTrumpet.UI.ViewModels
                         // Add To HiddenApps in Settings
                         const string Key = "HIDDEN_APPS";
                         List<string> hiddenApps = StorageFactory.GetSettings().Get(Key, new List<string>());
-                        hiddenApps.Add(App.AppId);
+                        hiddenApps.Add(App.ExeName);
                         StorageFactory.GetSettings().Set(Key, hiddenApps);
 
                         // Remove in Memory from Device-App-Collections
                         foreach(DeviceViewModel device in parent.AllDevices)
                         {
-                            device.Apps.Remove(App);
-                        }                
-
+                            var appsToRemove = device.Apps.Where(_app => app.ExeName.Equals(_app.ExeName)).ToList();
+                            foreach(var _app in appsToRemove)
+                            {
+                                device.Apps.Remove(_app);
+                            }
+                        }
                         RequestClose.Invoke();
                     })
             });
