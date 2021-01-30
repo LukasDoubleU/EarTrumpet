@@ -19,7 +19,7 @@ namespace EarTrumpet.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -75,6 +75,15 @@ namespace EarTrumpet.Properties {
         public static string AboutTitle {
             get {
                 return ResourceManager.GetString("AboutTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Additional Settings.
+        /// </summary>
+        public static string AdditionalSettingsTitle {
+            get {
+                return ResourceManager.GetString("AdditionalSettingsTitle", resourceCulture);
             }
         }
         
@@ -419,6 +428,24 @@ namespace EarTrumpet.Properties {
         public static string RecordingDevicesText {
             get {
                 return ResourceManager.GetString("RecordingDevicesText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restore hidden apps.
+        /// </summary>
+        public static string RestoreHiddenAppsButton {
+            get {
+                return ResourceManager.GetString("RestoreHiddenAppsButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All hidden apps were restored. They will be visible after a restart..
+        /// </summary>
+        public static string RestoreHiddenAppsDone {
+            get {
+                return ResourceManager.GetString("RestoreHiddenAppsDone", resourceCulture);
             }
         }
         

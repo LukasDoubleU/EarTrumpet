@@ -296,4 +296,13 @@ Möchten Sie [https://eartrumpet.app/jmp/fixfonts] öffnen?</value>
   <data name="PrivacyCheckboxText" xml:space="preserve">
     <value>Informationen zum Absturz an das EarTrumpet-Team senden</value>
   </data>
+  <data name="AdditionalSettingsTitle" xml:space="preserve">
+    <value>Weitere Einstellungen</value>
+  </data>
+  <data name="RestoreHiddenAppsButton" xml:space="preserve">
+    <value>Versteckte Apps wiederherstellen</value>
+  </data>
+  <data name="RestoreHiddenAppsDone" xml:space="preserve">
+    <value>Alle versteckten Apps wurden wiederhergestellt. Sie werden beim Nächsten Start wieder angezeigt.</value>
+  </data>
 </root>

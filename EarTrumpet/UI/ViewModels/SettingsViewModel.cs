@@ -12,7 +12,7 @@ namespace EarTrumpet.UI.ViewModels
     {
         public string Title { get; private set; }
         public ICommand GoHome { get; }
-        public ICommand DeleteHiddenApps { get; }
+        
         public BackstackViewModel Backstack { get; } = new BackstackViewModel();
         public ObservableCollection<SettingsCategoryViewModel> Categories { get; private set; }
 
@@ -71,7 +71,6 @@ namespace EarTrumpet.UI.ViewModels
             Title = title;
             Categories = new ObservableCollection<SettingsCategoryViewModel>(categories);
             GoHome = new RelayCommand(() => Selected = null);
-            DeleteHiddenApps = new RelayCommand(() => StorageFactory.GetSettings().Set("HIDDEN_APPS", new List<string>()));
         }
 
         public void InvokeSearchResult(SettingsCategoryViewModel cat, SettingsPageViewModel page)

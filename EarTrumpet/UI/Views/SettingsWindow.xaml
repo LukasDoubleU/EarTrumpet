@@ -303,6 +303,21 @@
                 </Grid>
             </Grid>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AdditionalSettingsViewModel}">
+            <StackPanel Orientation="Vertical">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Button Content="{x:Static resx:Resources.RestoreHiddenAppsButton}" Command="{Binding RestoreHiddenApps}"/>
+                </Grid>
+            </StackPanel>
+        </DataTemplate>
         <Style x:Key="SettingsListViewItem" TargetType="{x:Type ListViewItem}">
             <Setter Property="OverridesDefaultStyle" Value="True" />
             <Setter Property="SnapsToDevicePixels" Value="True" />
@@ -586,7 +601,6 @@
                               Margin="0"
                               VerticalContentAlignment="Center"
                               b:ComboBoxEx.SearchItemsSource="{Binding}" />
-                    <Button Content="Delete Hidden Apps" Margin="621,6,0,8" Grid.Row="1"  Command="{Binding DeleteHiddenApps}"/>
                     <ctl:ListView Grid.Row="2"
                                   ItemInvoked="{Event:Binding OnInvoked}"
                                   ItemsSource="{Binding Categories}"
