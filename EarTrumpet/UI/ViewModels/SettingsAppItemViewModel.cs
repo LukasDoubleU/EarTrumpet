@@ -50,6 +50,7 @@ namespace EarTrumpet.UI.ViewModels
         public string IconPath { get; set; }
         public bool IsExpanded => false;
         public bool IsMovable => false;
+        public bool IsHidden => false;
         public float PeakValue1 => 0;
         public float PeakValue2 => 0;
         public string PersistedOutputDevice => throw new NotImplementedException();

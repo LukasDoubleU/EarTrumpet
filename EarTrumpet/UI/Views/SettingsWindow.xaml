@@ -586,6 +586,7 @@
                               Margin="0"
                               VerticalContentAlignment="Center"
                               b:ComboBoxEx.SearchItemsSource="{Binding}" />
+                    <Button Content="Delete Hidden Apps" Margin="621,6,0,8" Grid.Row="1"  Command="{Binding DeleteHiddenApps}"/>
                     <ctl:ListView Grid.Row="2"
                                   ItemInvoked="{Event:Binding OnInvoked}"
                                   ItemsSource="{Binding Categories}"

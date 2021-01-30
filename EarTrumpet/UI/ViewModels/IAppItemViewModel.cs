@@ -18,6 +18,7 @@ namespace EarTrumpet.UI.ViewModels
         char IconText { get; }
         bool IsExpanded { get; }
         bool IsMovable { get; }
+        bool IsHidden { get; }
         float PeakValue1 { get; }
         float PeakValue2 { get; }
         string PersistedOutputDevice { get; }
