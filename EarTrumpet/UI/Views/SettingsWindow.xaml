@@ -303,6 +303,22 @@
                 </Grid>
             </Grid>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:EarTrumpetAdditionalSettingsViewModel}">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock 
+                        FontSize="15"
+                        Text="{x:Static resx:Resources.ChangeCommDeviceTitle}" />
+                    <CheckBox 
+                        IsChecked="{Binding Path=ChangeCommDevice}" />
+                </StackPanel>
+                <TextBlock  
+                    Theme:Brush.Foreground="GrayText"
+                    FontSize="12"
+                    TextWrapping="Wrap"
+                    Text="{x:Static resx:Resources.ChangeCommDeviceDescription}" />
+            </StackPanel>
+        </DataTemplate>
         <Style x:Key="SettingsListViewItem" TargetType="{x:Type ListViewItem}">
             <Setter Property="OverridesDefaultStyle" Value="True" />
             <Setter Property="SnapsToDevicePixels" Value="True" />

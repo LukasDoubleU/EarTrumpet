@@ -296,4 +296,13 @@ Open [https://eartrumpet.app/jmp/fixfonts] now?</value>
   <data name="PrivacyCheckboxText" xml:space="preserve">
     <value>Send crash data to the EarTrumpet team</value>
   </data>
+  <data name="AdditionalSettingsTitle" xml:space="preserve">
+    <value>Additional Settings</value>
+  </data>
+  <data name="ChangeCommDeviceDescription" xml:space="preserve">
+    <value>Determines whether when changing the default audio device, it should also be set as default communication device.</value>
+  </data>
+  <data name="ChangeCommDeviceTitle" xml:space="preserve">
+    <value>Change Communication Device</value>
+  </data>
 </root>

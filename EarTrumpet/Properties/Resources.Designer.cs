@@ -19,7 +19,7 @@ namespace EarTrumpet.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -75,6 +75,15 @@ namespace EarTrumpet.Properties {
         public static string AboutTitle {
             get {
                 return ResourceManager.GetString("AboutTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Additional Settings.
+        /// </summary>
+        public static string AdditionalSettingsTitle {
+            get {
+                return ResourceManager.GetString("AdditionalSettingsTitle", resourceCulture);
             }
         }
         
@@ -138,6 +147,24 @@ namespace EarTrumpet.Properties {
         public static string AppsListAccessibleText {
             get {
                 return ResourceManager.GetString("AppsListAccessibleText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Determines whether when changing the default audio device, it should also be set as default communication device..
+        /// </summary>
+        public static string ChangeCommDeviceDescription {
+            get {
+                return ResourceManager.GetString("ChangeCommDeviceDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Communication Device.
+        /// </summary>
+        public static string ChangeCommDeviceTitle {
+            get {
+                return ResourceManager.GetString("ChangeCommDeviceTitle", resourceCulture);
             }
         }
         

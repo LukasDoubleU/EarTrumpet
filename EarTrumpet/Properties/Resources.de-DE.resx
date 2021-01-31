@@ -296,4 +296,13 @@ Möchten Sie [https://eartrumpet.app/jmp/fixfonts] öffnen?</value>
   <data name="PrivacyCheckboxText" xml:space="preserve">
     <value>Informationen zum Absturz an das EarTrumpet-Team senden</value>
   </data>
+  <data name="AdditionalSettingsTitle" xml:space="preserve">
+    <value>Weitere Einstellungen</value>
+  </data>
+  <data name="ChangeCommDeviceDescription" xml:space="preserve">
+    <value>Gibt an ob beim Wechsel des Standardwiedergabegeräts auch das Standardkommunkationsgerät geändert werden soll.</value>
+  </data>
+  <data name="ChangeCommDeviceTitle" xml:space="preserve">
+    <value>Standardkommunikationsgerät wechseln</value>
+  </data>
 </root>
