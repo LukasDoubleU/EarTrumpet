@@ -317,4 +317,10 @@ Open [https://eartrumpet.app/jmp/fixfonts] now?</value>
   <data name="ChangeCommDeviceTitle" xml:space="preserve">
     <value>Change Communication Device</value>
   </data>
+  <data name="RestoreHiddenAppsButton" xml:space="preserve">
+    <value>Restore hidden apps</value>
+  </data>
+  <data name="RestoreHiddenAppsDone" xml:space="preserve">
+    <value>All hidden apps were restored. They will be visible after a restart.</value>
+  </data>
 </root>

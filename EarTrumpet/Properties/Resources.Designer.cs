@@ -486,6 +486,24 @@ namespace EarTrumpet.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Restore hidden apps.
+        /// </summary>
+        public static string RestoreHiddenAppsButton {
+            get {
+                return ResourceManager.GetString("RestoreHiddenAppsButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All hidden apps were restored. They will be visible after a restart..
+        /// </summary>
+        public static string RestoreHiddenAppsDone {
+            get {
+                return ResourceManager.GetString("RestoreHiddenAppsDone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No results.
         /// </summary>
         public static string SearchBoxNoResultsText {

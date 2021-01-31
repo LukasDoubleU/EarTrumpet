@@ -333,6 +333,9 @@
                     FontSize="12"
                     TextWrapping="Wrap"
                     Text="{x:Static resx:Resources.DefaultAppVolumeDescription}" />
+                
+                <!-- RESTORE HIDDEN APPS -->
+                <Button Content="{x:Static resx:Resources.RestoreHiddenAppsButton}" Command="{Binding RestoreHiddenApps}"/>
             </StackPanel>
         </DataTemplate>
         <Style x:Key="SettingsListViewItem" TargetType="{x:Type ListViewItem}">

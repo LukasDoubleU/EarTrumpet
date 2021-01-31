@@ -1,7 +1,9 @@
 ﻿using EarTrumpet.DataModel.Audio;
+using EarTrumpet.DataModel.Storage;
 using EarTrumpet.DataModel.WindowsAudio;
 using EarTrumpet.Extensions;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
@@ -73,8 +75,11 @@ namespace EarTrumpet.UI.ViewModels
             foreach (var session in _device.Groups)
             {
                 var app = new AppItemViewModel(this, session);
-                ApplyDefaultAppVolume(app);
-                Apps.AddSorted(app, AppItemViewModel.CompareByExeName);
+                if (!app.isHidden)
+                {
+                    ApplyDefaultAppVolume(app);
+                    Apps.AddSorted(app, AppItemViewModel.CompareByExeName);   
+                }
             }
 
             UpdateMasterVolumeIcon();
@@ -179,7 +184,10 @@ namespace EarTrumpet.UI.ViewModels
             
             ApplyDefaultAppVolume(newSession);
 
-            Apps.AddSorted(newSession, AppItemViewModel.CompareByExeName);
+            if(!newSession.IsHidden)
+            {
+                Apps.AddSorted(newSession, AppItemViewModel.CompareByExeName);
+            }
         }
         
         private void ApplyDefaultAppVolume(AppItemViewModel app)

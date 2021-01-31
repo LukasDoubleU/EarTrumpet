@@ -1,13 +1,13 @@
-﻿using EarTrumpet.DataModel;
-using EarTrumpet.DataModel.Audio;
-using EarTrumpet.DataModel.WindowsAudio;
-using EarTrumpet.Extensions;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Media;
 using System.Windows.Threading;
+using EarTrumpet.DataModel;
+using EarTrumpet.DataModel.Audio;
+using EarTrumpet.DataModel.WindowsAudio;
+using EarTrumpet.Extensions;
 
 namespace EarTrumpet.UI.ViewModels
 {
@@ -15,65 +15,16 @@ namespace EarTrumpet.UI.ViewModels
     // this serves as the visualziation and data container for that app until a real session is created.
     public class TemporaryAppItemViewModel : BindableBase, IAppItemViewModel
     {
-        public event EventHandler Expired;
-
-        public string Id { get; }
-        public bool IsMuted
-        {
-            get => ChildApps != null ? ChildApps[0].IsMuted : _isMuted;
-            set
-            {
-                if (ChildApps != null)
-                {
-                    ChildApps[0].IsMuted = value;
-                }
-                else
-                {
-                    _isMuted = value;
-                    RaisePropertyChanged(nameof(IsMuted));
-                }
-            }
-        }
-        public int Volume
-        {
-            get => ChildApps != null ? ChildApps[0].Volume : _volume;
-            set
-            {
-                if (ChildApps != null)
-                {
-                    ChildApps[0].Volume = value;
-                }
-                else
-                {
-                    _volume = value;
-                    RaisePropertyChanged(nameof(Volume));
-                }
-            }
-        }
-        public Color Background { get; }
-        public ObservableCollection<IAppItemViewModel> ChildApps { get; }
-        public string DisplayName { get; }
-        public string ExeName { get; }
-        public string AppId { get; }
-        public char IconText { get; }
-        public string IconPath { get; }
-        public bool IsExpanded { get; }
-        public bool IsDesktopApp { get; }
-        public bool IsMovable { get; }
-        public float PeakValue1 { get; }
-        public float PeakValue2 { get; }
-        public string PersistedOutputDevice => ((IAudioDeviceManagerWindowsAudio)_deviceManager).GetDefaultEndPoint(ProcessId);
-        public int ProcessId { get; }
-        public IDeviceViewModel Parent { get; }
+        private readonly Dispatcher _currentDispatcher = Dispatcher.CurrentDispatcher;
 
         private readonly IAudioDeviceManager _deviceManager;
         private readonly WeakReference<DeviceCollectionViewModel> _parent;
-        private readonly Dispatcher _currentDispatcher = Dispatcher.CurrentDispatcher;
+        private bool _isMuted;
         private int[] _processIds;
         private int _volume;
-        private bool _isMuted;
 
-        internal TemporaryAppItemViewModel(DeviceCollectionViewModel parent, IAudioDeviceManager deviceManager, IAppItemViewModel app, bool isChild = false)
+        internal TemporaryAppItemViewModel(DeviceCollectionViewModel parent, IAudioDeviceManager deviceManager,
+            IAppItemViewModel app, bool isChild = false)
         {
             _parent = new WeakReference<DeviceCollectionViewModel>(parent);
             if (!isChild)
@@ -99,6 +50,7 @@ namespace EarTrumpet.UI.ViewModels
             IconPath = app.IconPath;
             IsDesktopApp = app.IsDesktopApp;
             IsMovable = app.IsMovable;
+            IsHidden = app.IsHidden;
             IsExpanded = isChild;
             PeakValue1 = 0;
             PeakValue2 = 0;
@@ -106,45 +58,84 @@ namespace EarTrumpet.UI.ViewModels
             Parent = app.Parent;
 
             if (ChildApps != null)
-            {
                 _processIds = ChildApps.Select(a => a.ProcessId).ToSet().ToArray();
-            }
             else
-            {
-                _processIds = new int[] { ProcessId };
-            }
+                _processIds = new[] {ProcessId};
 
             foreach (var pid in _processIds)
-            {
-                ProcessWatcherService.WatchProcess(pid, (pidQuit) =>
+                ProcessWatcherService.WatchProcess(pid, pidQuit =>
                 {
-                    _currentDispatcher.BeginInvoke((Action)(() =>
+                    _currentDispatcher.BeginInvoke((Action) (() =>
                     {
                         var newPids = _processIds.ToList();
 
-                        if (newPids.Contains(pidQuit))
-                        {
-                            newPids.Remove(pidQuit);
-                        }
+                        if (newPids.Contains(pidQuit)) newPids.Remove(pidQuit);
                         _processIds = newPids.ToArray();
 
-                        if (_processIds.Length == 0)
-                        {
-                            Expire();
-                        }
+                        if (_processIds.Length == 0) Expire();
                     }));
                 });
-            }
 
 #if VSDEBUG
             Background = Colors.Red;
 #endif
         }
 
-        private void ChildApp_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        public string Id { get; }
+
+        public bool IsMuted
         {
-            RaisePropertyChanged(e.PropertyName);
+            get => ChildApps != null ? ChildApps[0].IsMuted : _isMuted;
+            set
+            {
+                if (ChildApps != null)
+                {
+                    ChildApps[0].IsMuted = value;
+                }
+                else
+                {
+                    _isMuted = value;
+                    RaisePropertyChanged(nameof(IsMuted));
+                }
+            }
         }
+
+        public int Volume
+        {
+            get => ChildApps != null ? ChildApps[0].Volume : _volume;
+            set
+            {
+                if (ChildApps != null)
+                {
+                    ChildApps[0].Volume = value;
+                }
+                else
+                {
+                    _volume = value;
+                    RaisePropertyChanged(nameof(Volume));
+                }
+            }
+        }
+
+        public Color Background { get; }
+        public ObservableCollection<IAppItemViewModel> ChildApps { get; }
+        public string DisplayName { get; }
+        public string ExeName { get; }
+        public string AppId { get; }
+        public char IconText { get; }
+        public string IconPath { get; }
+        public bool IsExpanded { get; }
+        public bool IsDesktopApp { get; }
+        public bool IsMovable { get; }
+        public bool IsHidden { get; }
+        public float PeakValue1 { get; }
+        public float PeakValue2 { get; }
+
+        public string PersistedOutputDevice =>
+            ((IAudioDeviceManagerWindowsAudio) _deviceManager).GetDefaultEndPoint(ProcessId);
+
+        public int ProcessId { get; }
+        public IDeviceViewModel Parent { get; }
 
         public bool DoesGroupWith(IAppItemViewModel app)
         {
@@ -155,22 +146,29 @@ namespace EarTrumpet.UI.ViewModels
         {
             // Update the output for all processes represented by this app.
             foreach (var pid in _processIds)
-            {
-                ((IAudioDeviceManagerWindowsAudio)_deviceManager).SetDefaultEndPoint(id, pid);
-            }
+                ((IAudioDeviceManagerWindowsAudio) _deviceManager).SetDefaultEndPoint(id, pid);
 
-            if (hide)
-            {
-                Expire();
-            }
+            if (hide) Expire();
+        }
+
+        public void UpdatePeakValueBackground()
+        {
+        }
+
+        public void UpdatePeakValueForeground()
+        {
+        }
+
+        public event EventHandler Expired;
+
+        private void ChildApp_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            RaisePropertyChanged(e.PropertyName);
         }
 
         private void Expire()
         {
             Expired?.Invoke(this, null);
         }
-
-        public void UpdatePeakValueBackground() { }
-        public void UpdatePeakValueForeground() { }
     }
 }

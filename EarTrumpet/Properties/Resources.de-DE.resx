@@ -317,4 +317,10 @@ Möchten Sie [https://eartrumpet.app/jmp/fixfonts] öffnen?</value>
   <data name="DefaultAppVolumeDescription" xml:space="preserve">
     <value>Neue Apps haben standardmäig volle Lautstärke. Dieses Verhalten kann hier angepasst werden.</value>
   </data>
+  <data name="RestoreHiddenAppsButton" xml:space="preserve">
+    <value>Versteckte Apps wiederherstellen</value>
+  </data>
+  <data name="RestoreHiddenAppsDone" xml:space="preserve">
+    <value>Alle versteckten Apps wurden wiederhergestellt. Sie werden beim Nächsten Start wieder angezeigt.</value>
+  </data>
 </root>
