@@ -287,13 +287,16 @@
 
 Möchten Sie [https://eartrumpet.app/jmp/fixfonts] öffnen?</value>
   </data>
-  <data name="ToggleMuteToolTip" xml:space="preserve">
+    <data name="ToggleMuteToolTip" xml:space="preserve">
     <value>Stummschaltung</value>
   </data>
-  <data name="PrivacyPolicyText" xml:space="preserve">
+    <data name="PrivacyPolicyText" xml:space="preserve">
     <value>Datenschutz</value>
   </data>
-  <data name="PrivacyCheckboxText" xml:space="preserve">
+    <data name="PrivacyCheckboxText" xml:space="preserve">
     <value>Informationen zum Absturz an das EarTrumpet-Team senden</value>
+  </data>
+    <data name="AdditionalSettingsTitle" xml:space="preserve">
+    <value>Erweiterte Einstellungen</value>
   </data>
 </root>

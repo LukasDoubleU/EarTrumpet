@@ -6,7 +6,6 @@
         xmlns:b="clr-namespace:EarTrumpet.UI.Behaviors"
         xmlns:ctl="clr-namespace:EarTrumpet.UI.Controls"
         xmlns:datamodel="clr-namespace:EarTrumpet.DataModel"
-        xmlns:local="clr-namespace:EarTrumpet"
         xmlns:resx="clr-namespace:EarTrumpet.Properties"
         xmlns:vm="clr-namespace:EarTrumpet.UI.ViewModels"
         Name="WindowRoot"
@@ -29,7 +28,8 @@
     <Window.Resources>
         <DataTemplate DataType="{x:Type vm:EarTrumpetShortcutsPageViewModel}">
             <StackPanel Orientation="Vertical">
-                <TextBlock Style="{StaticResource BodyText}" Text="{x:Static resx:Resources.SettingsOpenEarTrumpetText}" />
+                <TextBlock Style="{StaticResource BodyText}"
+                           Text="{x:Static resx:Resources.SettingsOpenEarTrumpetText}" />
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -39,15 +39,13 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock VerticalAlignment="Center"
-                               Style="{StaticResource BodySubText}"
+                    <TextBlock
+                        Style="{StaticResource BodySubText}"
                                Text="{x:Static resx:Resources.DefaultHotkeyDescriptionText}" />
                     <TextBlock Grid.Column="1"
-                               VerticalAlignment="Center"
                                Style="{StaticResource BodyText}"
                                Text="{Binding DefaultHotKey}" />
                     <TextBlock Grid.Row="1"
-                               VerticalAlignment="Center"
                                Style="{StaticResource BodySubText}"
                                Text="{x:Static resx:Resources.HotkeyDescriptionText}" />
                     <ContentControl Grid.Row="1"
@@ -65,15 +63,13 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock VerticalAlignment="Center"
-                               Style="{StaticResource BodySubText}"
+                    <TextBlock
+                        Style="{StaticResource BodySubText}"
                                Text="{x:Static resx:Resources.DefaultHotkeyDescriptionText}" />
                     <TextBlock Grid.Column="1"
-                               VerticalAlignment="Center"
                                Style="{StaticResource BodyText}"
                                Text="{Binding DefaultMixerHotKey}" />
                     <TextBlock Grid.Row="1"
-                               VerticalAlignment="Center"
                                Style="{StaticResource BodySubText}"
                                Text="{x:Static resx:Resources.HotkeyDescriptionText}" />
                     <ContentControl Grid.Row="1"
@@ -91,15 +87,13 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock VerticalAlignment="Center"
-                               Style="{StaticResource BodySubText}"
+                    <TextBlock
+                        Style="{StaticResource BodySubText}"
                                Text="{x:Static resx:Resources.DefaultHotkeyDescriptionText}" />
                     <TextBlock Grid.Column="1"
-                               VerticalAlignment="Center"
                                Style="{StaticResource BodyText}"
                                Text="{Binding DefaultSettingsHotKey}" />
                     <TextBlock Grid.Row="1"
-                               VerticalAlignment="Center"
                                Style="{StaticResource BodySubText}"
                                Text="{x:Static resx:Resources.HotkeyDescriptionText}" />
                     <ContentControl Grid.Row="1"
@@ -134,22 +128,23 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <StackPanel>
-                        <TextBlock VerticalAlignment="Center"
-                                   Style="{StaticResource BodyText}"
+                        <TextBlock
+                            Style="{StaticResource BodyText}"
                                    Text="{Binding AboutText}" />
-                        <TextBlock VerticalAlignment="Center"
-                                   Style="{StaticResource BodyText}"
+                        <TextBlock
+                            Style="{StaticResource BodyText}"
                                    Text="© File-New-Project" />
-                            <CheckBox Margin="12,24,12,-6"
-                                      HorizontalAlignment="Left"
-                                      Content="{x:Static resx:Resources.PrivacyCheckboxText}"
-                                      IsChecked="{Binding IsTelemetryEnabled, Mode=TwoWay}" />
+                        <CheckBox Margin="12,24,12,-6"
+                                  HorizontalAlignment="Left"
+                                  Content="{x:Static resx:Resources.PrivacyCheckboxText}"
+                                  IsChecked="{Binding IsTelemetryEnabled, Mode=TwoWay}" />
                         <TextBlock Style="{StaticResource HyperlinkBlock}">
                             <Hyperlink Command="{Binding OpenPrivacyPolicyCommand}">
                                 <Run Text="{x:Static resx:Resources.PrivacyPolicyText}" />
                             </Hyperlink>
                         </TextBlock>
-                        <TextBlock Style="{StaticResource HyperlinkBlock}"><Hyperlink Command="{Binding OpenAboutCommand}">
+                        <TextBlock Style="{StaticResource HyperlinkBlock}">
+                            <Hyperlink Command="{Binding OpenAboutCommand}">
                                 <Run Text="{x:Static resx:Resources.WebsiteText}" />
                             </Hyperlink>
                         </TextBlock>
@@ -208,12 +203,15 @@
                                Style="{StaticResource BodySubText}"
                                Text="{Binding Version}" />
                 </Grid>
-                <TextBlock Style="{StaticResource HyperlinkBlock}"><Hyperlink Command="{Binding OpenHelpLink}">
+                <TextBlock Style="{StaticResource HyperlinkBlock}">
+                    <Hyperlink Command="{Binding OpenHelpLink}">
                         <Run Text="{x:Static resx:Resources.WebsiteText}" />
-                    </Hyperlink></TextBlock>
+                    </Hyperlink>
+                </TextBlock>
 
                 <TextBlock Style="{StaticResource HeadingText}" Text="{x:Static resx:Resources.AddonUninstallTitle}" />
-                <TextBlock Style="{StaticResource BodyText}" Text="{x:Static resx:Resources.AddonUninstallDescriptionText}" />
+                <TextBlock Style="{StaticResource BodyText}"
+                           Text="{x:Static resx:Resources.AddonUninstallDescriptionText}" />
                 <Button Command="{Binding Uninstall}" Content="{x:Static resx:Resources.AddonUninstallButtonText}" />
             </StackPanel>
         </DataTemplate>
@@ -303,6 +301,20 @@
                 </Grid>
             </Grid>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AdditionalSettingsViewModel}">
+            <StackPanel Orientation="Vertical">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </StackPanel>
+        </DataTemplate>
         <Style x:Key="SettingsListViewItem" TargetType="{x:Type ListViewItem}">
             <Setter Property="OverridesDefaultStyle" Value="True" />
             <Setter Property="SnapsToDevicePixels" Value="True" />
@@ -327,7 +339,8 @@
                                 <MultiTrigger.Conditions>
                                     <Condition Property="IsMouseOver" Value="True" />
                                 </MultiTrigger.Conditions>
-                                <Setter TargetName="Bd" Property="Theme:Brush.Background" Value="Theme={Theme}ListLow, HighContrast=Highlight" />
+                                <Setter TargetName="Bd" Property="Theme:Brush.Background"
+                                        Value="Theme={Theme}ListLow, HighContrast=Highlight" />
                             </MultiTrigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -382,7 +395,8 @@
                                 <MultiTrigger.Conditions>
                                     <Condition Property="IsMouseOver" Value="True" />
                                 </MultiTrigger.Conditions>
-                                <Setter TargetName="Bd" Property="Theme:Brush.BorderBrush" Value="Light=LightBaseMediumLow/0.12, Dark=DarkBaseMediumLow/0.12, HighContrast=Highlight" />
+                                <Setter TargetName="Bd" Property="Theme:Brush.BorderBrush"
+                                        Value="Light=LightBaseMediumLow/0.12, Dark=DarkBaseMediumLow/0.12, HighContrast=Highlight" />
                             </MultiTrigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -402,7 +416,8 @@
                                 Background="{TemplateBinding Background}"
                                 SnapsToDevicePixels="true">
                             <ScrollViewer Padding="{TemplateBinding Padding}" Focusable="false">
-                                <ItemsPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                <ItemsPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                             </ScrollViewer>
                         </Border>
                     </ControlTemplate>
@@ -427,7 +442,9 @@
                         <Style.Triggers>
                             <MultiDataTrigger>
                                 <MultiDataTrigger.Conditions>
-                                    <Condition Binding="{Binding Source={StaticResource ThemeManager}, Path=AnimationsEnabled}" Value="True" />
+                                    <Condition
+                                        Binding="{Binding Source={StaticResource ThemeManager}, Path=AnimationsEnabled}"
+                                        Value="True" />
                                     <Condition Binding="{Binding ElementName=WindowRoot, Path=IsActive}" Value="True" />
                                 </MultiDataTrigger.Conditions>
                                 <MultiDataTrigger.EnterActions>
@@ -457,7 +474,9 @@
                             </MultiDataTrigger>
                             <MultiDataTrigger>
                                 <MultiDataTrigger.Conditions>
-                                    <Condition Binding="{Binding Source={StaticResource ThemeManager}, Path=AnimationsEnabled}" Value="False" />
+                                    <Condition
+                                        Binding="{Binding Source={StaticResource ThemeManager}, Path=AnimationsEnabled}"
+                                        Value="False" />
                                     <Condition Binding="{Binding ElementName=WindowRoot, Path=IsActive}" Value="True" />
                                 </MultiDataTrigger.Conditions>
                                 <MultiDataTrigger.EnterActions>
@@ -524,16 +543,21 @@
                                 <DataTrigger Binding="{Binding Backstack.CanGoBack}" Value="False">
                                     <Setter Property="Visibility" Value="Collapsed" />
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static datamodel:SystemSettings.IsRTL}}" Value="True">
+                                <DataTrigger Binding="{Binding Source={x:Static datamodel:SystemSettings.IsRTL}}"
+                                             Value="True">
                                     <Setter Property="Content" Value="&#xE72A;" />
                                 </DataTrigger>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Theme:Brush.Foreground" Value="Theme=ApplicationTextDarkTheme, HighContrast=HighlightText" />
-                                    <Setter Property="Theme:Brush.Background" Value="Theme=SystemAccent, HighContrast=Highlight" />
+                                    <Setter Property="Theme:Brush.Foreground"
+                                            Value="Theme=ApplicationTextDarkTheme, HighContrast=HighlightText" />
+                                    <Setter Property="Theme:Brush.Background"
+                                            Value="Theme=SystemAccent, HighContrast=Highlight" />
                                 </Trigger>
                                 <Trigger Property="IsPressed" Value="True">
-                                    <Setter Property="Theme:Brush.Foreground" Value="Theme=ApplicationTextDarkTheme, HighContrast=HighlightText" />
-                                    <Setter Property="Theme:Brush.Background" Value="Theme=SystemAccent{Theme}1, HighContrast=Highlight" />
+                                    <Setter Property="Theme:Brush.Foreground"
+                                            Value="Theme=ApplicationTextDarkTheme, HighContrast=HighlightText" />
+                                    <Setter Property="Theme:Brush.Background"
+                                            Value="Theme=SystemAccent{Theme}1, HighContrast=Highlight" />
                                 </Trigger>
                                 <DataTrigger Binding="{Binding Dialog}" Value="{x:Null}">
                                     <Setter Property="IsEnabled" Value="True" />
@@ -646,10 +670,14 @@
                                                FontSize="16"
                                                Text="&#xE10F;">
                                         <TextBlock.Style>
-                                            <Style BasedOn="{StaticResource GlyphTextBlockStyle}" TargetType="TextBlock">
+                                            <Style BasedOn="{StaticResource GlyphTextBlockStyle}"
+                                                   TargetType="TextBlock">
                                                 <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}, Path=IsMouseOver}" Value="True">
-                                                        <Setter Property="Theme:Brush.Foreground" Value="Theme=Text, HighContrast=HighlightText" />
+                                                    <DataTrigger
+                                                        Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}, Path=IsMouseOver}"
+                                                        Value="True">
+                                                        <Setter Property="Theme:Brush.Foreground"
+                                                                Value="Theme=Text, HighContrast=HighlightText" />
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
@@ -663,8 +691,11 @@
                                         <TextBlock.Style>
                                             <Style BasedOn="{StaticResource BodyText}" TargetType="TextBlock">
                                                 <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}, Path=IsMouseOver}" Value="True">
-                                                        <Setter Property="Theme:Brush.Foreground" Value="Theme=Text, HighContrast=HighlightText" />
+                                                    <DataTrigger
+                                                        Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}, Path=IsMouseOver}"
+                                                        Value="True">
+                                                        <Setter Property="Theme:Brush.Foreground"
+                                                                Value="Theme=Text, HighContrast=HighlightText" />
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
@@ -734,7 +765,8 @@
                                                     <Setter Property="Theme:Brush.Background" Value="Transparent" />
                                                     <Style.Triggers>
                                                         <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                                                            <Setter Property="Theme:Brush.Background" Value="SystemAccent" />
+                                                            <Setter Property="Theme:Brush.Background"
+                                                                    Value="SystemAccent" />
                                                         </DataTrigger>
                                                     </Style.Triggers>
                                                 </Style>
@@ -745,10 +777,14 @@
                                                    FontSize="16"
                                                    Text="{Binding Glyph}">
                                             <TextBlock.Style>
-                                                <Style BasedOn="{StaticResource GlyphTextBlockStyle}" TargetType="TextBlock">
+                                                <Style BasedOn="{StaticResource GlyphTextBlockStyle}"
+                                                       TargetType="TextBlock">
                                                     <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListViewItem}}, Path=IsMouseOver}" Value="True">
-                                                            <Setter Property="Theme:Brush.Foreground" Value="Theme=Text, HighContrast=HighlightText" />
+                                                        <DataTrigger
+                                                            Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListViewItem}}, Path=IsMouseOver}"
+                                                            Value="True">
+                                                            <Setter Property="Theme:Brush.Foreground"
+                                                                    Value="Theme=Text, HighContrast=HighlightText" />
                                                         </DataTrigger>
                                                     </Style.Triggers>
                                                 </Style>
@@ -761,8 +797,11 @@
                                             <TextBlock.Style>
                                                 <Style TargetType="TextBlock">
                                                     <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListViewItem}}, Path=IsMouseOver}" Value="True">
-                                                            <Setter Property="Theme:Brush.Foreground" Value="Theme=Text, HighContrast=HighlightText" />
+                                                        <DataTrigger
+                                                            Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListViewItem}}, Path=IsMouseOver}"
+                                                            Value="True">
+                                                            <Setter Property="Theme:Brush.Foreground"
+                                                                    Value="Theme=Text, HighContrast=HighlightText" />
                                                         </DataTrigger>
                                                     </Style.Triggers>
                                                 </Style>
@@ -799,7 +838,9 @@
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Source={StaticResource ThemeManager}, Path=IsHighContrast}" Value="True">
+                                    <DataTrigger
+                                        Binding="{Binding Source={StaticResource ThemeManager}, Path=IsHighContrast}"
+                                        Value="True">
                                         <Setter Property="BorderThickness" Value="1,0,0,0" />
                                     </DataTrigger>
                                 </Style.Triggers>
