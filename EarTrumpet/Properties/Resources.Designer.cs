@@ -369,6 +369,24 @@ namespace EarTrumpet.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to When active, EarTrumpet will save and restore app volumes. This helps when you have app that sometimes reset to 100 volume..
+        /// </summary>
+        public static string PersistAppVolumeDescription {
+            get {
+                return ResourceManager.GetString("PersistAppVolumeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save App Volumes.
+        /// </summary>
+        public static string PersistAppVolumeTitle {
+            get {
+                return ResourceManager.GetString("PersistAppVolumeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Playback devices.
         /// </summary>
         public static string PlaybackDevicesText {

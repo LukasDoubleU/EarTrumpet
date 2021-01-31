@@ -299,4 +299,10 @@ Möchten Sie [https://eartrumpet.app/jmp/fixfonts] öffnen?</value>
     <data name="AdditionalSettingsTitle" xml:space="preserve">
     <value>Erweiterte Einstellungen</value>
   </data>
+  <data name="PersistAppVolumeDescription" xml:space="preserve">
+    <value>Wenn aktiv, speichert EarTrumpet die Lautstärke von Apps. Das kann helfen, wenn Apps sich manchmal auf volle Lautstärke zurücksetzen.</value>
+  </data>
+  <data name="PersistAppVolumeTitle" xml:space="preserve">
+    <value>App Lautstärke speichern</value>
+  </data>
 </root>

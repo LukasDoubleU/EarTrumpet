@@ -299,4 +299,10 @@ Open [https://eartrumpet.app/jmp/fixfonts] now?</value>
     <data name="AdditionalSettingsTitle" xml:space="preserve">
     <value>Additional Settings</value>
   </data>
+  <data name="PersistAppVolumeDescription" xml:space="preserve">
+    <value>When active, EarTrumpet will save and restore app volumes. This helps when you have app that sometimes reset to 100 volume.</value>
+  </data>
+  <data name="PersistAppVolumeTitle" xml:space="preserve">
+    <value>Save App Volumes</value>
+  </data>
 </root>

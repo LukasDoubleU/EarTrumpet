@@ -1,5 +1,14 @@
-# Hide Apps
-
-- Description: This is a workaround for a Windows issue. After an Update Exe's Volume will reset to 100. Therefore the
-  configured volume for each app should be persisted and actively reapplied.
-- Related Issue: https://github.com/File-New-Project/EarTrumpet/issues/5481
+# Persist App Volumes
+- Description: This is a workaround for a Windows issue. When an executable is being updates its volume defaults back to 100. Presumably that is because the update changed the app's id, and windows uses the id to store the volume. EarTrumpet should memorize an apps volume by the exe's name and reapply that. Personally I witness this issue a lot with chrome and other chromium based browsers.
+- Branch: persistVolume
+- Issue: https://github.com/File-New-Project/EarTrumpet/issues/481
+- How To Test:
+  - Change the volume of an app to 1 via EarTrumpet
+    - Only then will EarTrumpet persist that apps volume
+  - Close EarTrumpet
+  - Change the volume to 100 via default windows mixer
+    - This is to simulate an exe resetting its volume
+  - Start EarTrumpet
+     - Previous behaviour: Apps volume will be 100
+    - Now: Apps volume will go back to 1
+- Risk: Since the exe's volume is being persisted relative to its name, you can no longer assign different volumes to two different exe's that have the same name.
