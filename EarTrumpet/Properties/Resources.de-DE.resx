@@ -305,4 +305,10 @@ Möchten Sie [https://eartrumpet.app/jmp/fixfonts] öffnen?</value>
   <data name="PersistAppVolumeTitle" xml:space="preserve">
     <value>App Lautstärke speichern</value>
   </data>
+  <data name="DefaultAppVolumeTitle" xml:space="preserve">
+    <value>Standard Lautstärke für neue Apps</value>
+  </data>
+  <data name="DefaultAppVolumeDescription" xml:space="preserve">
+    <value>Neue Apps haben standardmäig volle Lautstärke. Dieses Verhalten kann hier angepasst werden.</value>
+  </data>
 </root>

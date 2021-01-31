@@ -305,18 +305,18 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type vm:EarTrumpetAdditionalSettingsViewModel}">
             <StackPanel Orientation="Vertical">
-                <StackPanel Orientation="Horizontal">
                     <TextBlock 
                         FontSize="15"
-                        Text="{x:Static resx:Resources.PersistAppVolumeTitle}" />
-                    <CheckBox 
-                        IsChecked="{Binding Path=PersistAppVolumes}" />
-                </StackPanel>
-                <TextBlock  
-                    Theme:Brush.Foreground="GrayText"
-                    FontSize="12"
-                    TextWrapping="Wrap"
-                    Text="{x:Static resx:Resources.PersistAppVolumeDescription}" />
+                        Text="{x:Static resx:Resources.DefaultAppVolumeTitle}" />
+                    <DockPanel VerticalAlignment="Center" Margin="10">
+                        <TextBox Text="{Binding ElementName=slValue, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                        <Slider Minimum="0" Maximum="100" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" Name="slValue" Value="{Binding Path=DefaultAppVolume,Mode=TwoWay}" />
+                    </DockPanel>
+                    <TextBlock  
+                        Theme:Brush.Foreground="GrayText"
+                        FontSize="12"
+                        TextWrapping="Wrap"
+                        Text="{x:Static resx:Resources.DefaultAppVolumeDescription}" />
             </StackPanel>
         </DataTemplate>
         <Style x:Key="SettingsListViewItem" TargetType="{x:Type ListViewItem}">

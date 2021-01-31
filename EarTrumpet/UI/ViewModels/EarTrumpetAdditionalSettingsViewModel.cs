@@ -1,3 +1,4 @@
+using System;
 using EarTrumpet.DataModel.Storage;
 using EarTrumpet.Properties;
 
@@ -11,10 +12,10 @@ namespace EarTrumpet.UI.ViewModels
             Glyph = "\xE10C";
         }
 
-        public bool PersistAppVolumes
+        public int DefaultAppVolume
         {
-            get => StorageFactory.GetSettings("PersistVolume").Get("PersistAppVolumes", false);
-            set => StorageFactory.GetSettings("PersistVolume").Set("PersistAppVolumes", value);
+            get => StorageFactory.GetSettings().Get("DefaultAppVolume", 100);
+            set => StorageFactory.GetSettings().Set("DefaultAppVolume", value);
         }
     }
 }

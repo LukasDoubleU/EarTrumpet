@@ -73,8 +73,7 @@ namespace EarTrumpet.UI.ViewModels
             foreach (var session in _device.Groups)
             {
                 var app = new AppItemViewModel(this, session);
-                // Restore persisted volume if it exists
-                RestorePersistedAppVolume(session.DisplayName, app);
+                ApplyDefaultAppVolume(app);
                 Apps.AddSorted(app, AppItemViewModel.CompareByExeName);
             }
 
@@ -177,25 +176,36 @@ namespace EarTrumpet.UI.ViewModels
                     break;
                 }
             }
-
-            // Restore persisted volume if it exists
-            RestorePersistedAppVolume(DisplayName, newSession);
+            
+            ApplyDefaultAppVolume(newSession);
 
             Apps.AddSorted(newSession, AppItemViewModel.CompareByExeName);
         }
-
-        private void RestorePersistedAppVolume(string deviceName, AppItemViewModel app)
+        
+        private void ApplyDefaultAppVolume(AppItemViewModel app)
         {
-            var settings = StorageFactory.GetSettings("PersistVolume");
+            // We only want to apply the default app volume to new apps
+            // Thus, the existing volume must be 100 ..
+            if (app.Volume != 100) return;
+            // .. and we mustn't have applied the default for this app before
+            var appVolumeSettings = StorageFactory.GetSettings("DefaultAppVolumes");
+            var key = app.AppId;
+            if (appVolumeSettings.HasKey(key)) return;
+            
             // Check if this functionality is active
-            var persistAppVolumes = settings.Get("PersistAppVolumes", false);
-            if (!persistAppVolumes) return;
-            // Restore the volume if it exists
-            var key = DisplayName + "." + app.ExeName;
-            if (settings.HasKey(key))
-            {
-                app.Volume = settings.Get(key, 1f).ToVolumeInt();
-            }
+            var generalSettings = StorageFactory.GetSettings();
+            var defaultAppVolume = generalSettings.Get("DefaultAppVolume", 100);
+            if (defaultAppVolume == 100) return;
+
+            // Only now we apply the default volume
+            app.Volume = defaultAppVolume;
+            // Remember that we applied the default for this app
+            appVolumeSettings.Set(key, true);
+            
+            // TODO: What's the expected behaviour regarding multiple devices and changing appIds?
+            // AppIds should be different amongst different devices anyway, right? Then it should be fine as is.
+            
+            // TODO: The amount of keys in 'appVolumeSettings' will grow indefinitely. What's a good way around that?
         }
 
         public void AppMovingToThisDevice(TemporaryAppItemViewModel app)

@@ -225,6 +225,24 @@ namespace EarTrumpet.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New apps have 100 volume per default. This let&apos;s you customize..
+        /// </summary>
+        public static string DefaultAppVolumeDescription {
+            get {
+                return ResourceManager.GetString("DefaultAppVolumeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default volume for new apps.
+        /// </summary>
+        public static string DefaultAppVolumeTitle {
+            get {
+                return ResourceManager.GetString("DefaultAppVolumeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Always use the default playback device.
         /// </summary>
         public static string DefaultDeviceText {

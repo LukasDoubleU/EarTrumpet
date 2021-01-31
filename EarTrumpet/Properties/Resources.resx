@@ -305,4 +305,10 @@ Open [https://eartrumpet.app/jmp/fixfonts] now?</value>
   <data name="PersistAppVolumeTitle" xml:space="preserve">
     <value>Save App Volumes</value>
   </data>
+  <data name="DefaultAppVolumeTitle" xml:space="preserve">
+    <value>Default volume for new apps</value>
+  </data>
+  <data name="DefaultAppVolumeDescription" xml:space="preserve">
+    <value>New apps have 100 volume per default. This let's you customize.</value>
+  </data>
 </root>
