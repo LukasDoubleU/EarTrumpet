@@ -307,19 +307,12 @@
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock 
-                        Margin="6,12,0,0"
-                        VerticalAlignment="Top"
-                        HorizontalAlignment="Stretch"
                         FontSize="15"
                         Text="{x:Static resx:Resources.PersistAppVolumeTitle}" />
                     <CheckBox 
-                        VerticalAlignment="Top"
-                        HorizontalAlignment="Right"
                         IsChecked="{Binding Path=PersistAppVolumes}" />
                 </StackPanel>
                 <TextBlock  
-                    Margin="6,2,8,6"
-                    VerticalAlignment="Top"
                     Theme:Brush.Foreground="GrayText"
                     FontSize="12"
                     TextWrapping="Wrap"

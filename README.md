@@ -3,6 +3,7 @@
 - Branch: persistVolume
 - Issue: https://github.com/File-New-Project/EarTrumpet/issues/481
 - How To Test:
+  - Activate 'Save Volumes' in settings
   - Change the volume of an app to 1 via EarTrumpet
     - Only then will EarTrumpet persist that apps volume
   - Close EarTrumpet

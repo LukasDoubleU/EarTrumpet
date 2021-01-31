@@ -74,9 +74,7 @@ namespace EarTrumpet.UI.ViewModels
             {
                 var app = new AppItemViewModel(this, session);
                 // Restore persisted volume if it exists
-                var settings = StorageFactory.GetSettings("PersistVolume");
-                var key = session.DisplayName + "." + app.ExeName;
-                if (settings.HasKey(key)) app.Volume = settings.Get(key, 1f).ToVolumeInt();
+                RestorePersistedAppVolume(session.DisplayName, app);
                 Apps.AddSorted(app, AppItemViewModel.CompareByExeName);
             }
 
@@ -181,13 +179,23 @@ namespace EarTrumpet.UI.ViewModels
             }
 
             // Restore persisted volume if it exists
+            RestorePersistedAppVolume(DisplayName, newSession);
+
+            Apps.AddSorted(newSession, AppItemViewModel.CompareByExeName);
+        }
+
+        private void RestorePersistedAppVolume(string deviceName, AppItemViewModel app)
+        {
             var settings = StorageFactory.GetSettings("PersistVolume");
-            var key = DisplayName + "." + newSession.ExeName;
+            // Check if this functionality is active
+            var persistAppVolumes = settings.Get("PersistAppVolumes", false);
+            if (!persistAppVolumes) return;
+            // Restore the volume if it exists
+            var key = DisplayName + "." + app.ExeName;
             if (settings.HasKey(key))
             {
-                newSession.Volume = settings.Get(key, 1f).ToVolumeInt();
+                app.Volume = settings.Get(key, 1f).ToVolumeInt();
             }
-            Apps.AddSorted(newSession, AppItemViewModel.CompareByExeName);
         }
 
         public void AppMovingToThisDevice(TemporaryAppItemViewModel app)
