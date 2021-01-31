@@ -11,6 +11,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Threading;
+using EarTrumpet.DataModel.Storage;
 
 namespace EarTrumpet.DataModel.WindowsAudio.Internal
 {
@@ -373,7 +374,7 @@ namespace EarTrumpet.DataModel.WindowsAudio.Internal
         {
             _volume = NewVolume;
             _isMuted = NewMute != 0;
-
+            
             _dispatcher.BeginInvoke((Action)(() =>
             {
                 RaisePropertyChanged(nameof(Volume));

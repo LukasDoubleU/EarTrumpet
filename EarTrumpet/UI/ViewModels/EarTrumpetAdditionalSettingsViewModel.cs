@@ -17,5 +17,11 @@ namespace EarTrumpet.UI.ViewModels
             get => StorageFactory.GetSettings().Get("ChangeCommDevice", false);
             set => StorageFactory.GetSettings().Set("ChangeCommDevice", value);
         }
+
+        public int DefaultAppVolume
+        {
+            get => StorageFactory.GetSettings().Get("DefaultAppVolume", 100);
+            set => StorageFactory.GetSettings().Set("DefaultAppVolume", value);
+        }
     }
 }

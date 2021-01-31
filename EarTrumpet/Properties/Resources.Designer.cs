@@ -243,6 +243,24 @@ namespace EarTrumpet.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New apps have 100 volume per default. This let&apos;s you customize..
+        /// </summary>
+        public static string DefaultAppVolumeDescription {
+            get {
+                return ResourceManager.GetString("DefaultAppVolumeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default volume for new apps.
+        /// </summary>
+        public static string DefaultAppVolumeTitle {
+            get {
+                return ResourceManager.GetString("DefaultAppVolumeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Always use the default playback device.
         /// </summary>
         public static string DefaultDeviceText {
@@ -383,6 +401,24 @@ namespace EarTrumpet.Properties {
         public static string OpenSoundSettingsText {
             get {
                 return ResourceManager.GetString("OpenSoundSettingsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When active, EarTrumpet will save and restore app volumes. This helps when you have app that sometimes reset to 100 volume..
+        /// </summary>
+        public static string PersistAppVolumeDescription {
+            get {
+                return ResourceManager.GetString("PersistAppVolumeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save App Volumes.
+        /// </summary>
+        public static string PersistAppVolumeTitle {
+            get {
+                return ResourceManager.GetString("PersistAppVolumeTitle", resourceCulture);
             }
         }
         

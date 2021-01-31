@@ -5,6 +5,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using EarTrumpet.DataModel.Storage;
 
 namespace EarTrumpet.UI.ViewModels
 {
@@ -71,7 +72,9 @@ namespace EarTrumpet.UI.ViewModels
 
             foreach (var session in _device.Groups)
             {
-                Apps.AddSorted(new AppItemViewModel(this, session), AppItemViewModel.CompareByExeName);
+                var app = new AppItemViewModel(this, session);
+                ApplyDefaultAppVolume(app);
+                Apps.AddSorted(app, AppItemViewModel.CompareByExeName);
             }
 
             UpdateMasterVolumeIcon();
@@ -173,8 +176,36 @@ namespace EarTrumpet.UI.ViewModels
                     break;
                 }
             }
+            
+            ApplyDefaultAppVolume(newSession);
 
             Apps.AddSorted(newSession, AppItemViewModel.CompareByExeName);
+        }
+        
+        private void ApplyDefaultAppVolume(AppItemViewModel app)
+        {
+            // We only want to apply the default app volume to new apps
+            // Thus, the existing volume must be 100 ..
+            if (app.Volume != 100) return;
+            // .. and we mustn't have applied the default for this app before
+            var appVolumeSettings = StorageFactory.GetSettings("DefaultAppVolumes");
+            var key = app.AppId;
+            if (appVolumeSettings.HasKey(key)) return;
+            
+            // Check if this functionality is active
+            var generalSettings = StorageFactory.GetSettings();
+            var defaultAppVolume = generalSettings.Get("DefaultAppVolume", 100);
+            if (defaultAppVolume == 100) return;
+
+            // Only now we apply the default volume
+            app.Volume = defaultAppVolume;
+            // Remember that we applied the default for this app
+            appVolumeSettings.Set(key, true);
+            
+            // TODO: What's the expected behaviour regarding multiple devices and changing appIds?
+            // AppIds should be different amongst different devices anyway, right? Then it should be fine as is.
+            
+            // TODO: The amount of keys in 'appVolumeSettings' will grow indefinitely. What's a good way around that?
         }
 
         public void AppMovingToThisDevice(TemporaryAppItemViewModel app)

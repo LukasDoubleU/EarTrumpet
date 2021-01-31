@@ -287,17 +287,29 @@
 
 Open [https://eartrumpet.app/jmp/fixfonts] now?</value>
   </data>
-  <data name="ToggleMuteToolTip" xml:space="preserve">
+    <data name="ToggleMuteToolTip" xml:space="preserve">
     <value>Toggle mute</value>
   </data>
-  <data name="PrivacyPolicyText" xml:space="preserve">
+    <data name="PrivacyPolicyText" xml:space="preserve">
     <value>Privacy policy</value>
   </data>
-  <data name="PrivacyCheckboxText" xml:space="preserve">
+    <data name="PrivacyCheckboxText" xml:space="preserve">
     <value>Send crash data to the EarTrumpet team</value>
   </data>
-  <data name="AdditionalSettingsTitle" xml:space="preserve">
+    <data name="AdditionalSettingsTitle" xml:space="preserve">
     <value>Additional Settings</value>
+  </data>
+  <data name="PersistAppVolumeDescription" xml:space="preserve">
+    <value>When active, EarTrumpet will save and restore app volumes. This helps when you have app that sometimes reset to 100 volume.</value>
+  </data>
+  <data name="PersistAppVolumeTitle" xml:space="preserve">
+    <value>Save App Volumes</value>
+  </data>
+  <data name="DefaultAppVolumeTitle" xml:space="preserve">
+    <value>Default volume for new apps</value>
+  </data>
+  <data name="DefaultAppVolumeDescription" xml:space="preserve">
+    <value>New apps have 100 volume per default. This let's you customize.</value>
   </data>
   <data name="ChangeCommDeviceDescription" xml:space="preserve">
     <value>Determines whether when changing the default audio device, it should also be set as default communication device.</value>
