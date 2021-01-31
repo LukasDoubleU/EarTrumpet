@@ -10,11 +10,11 @@ using EarTrumpet.Properties;
 
 namespace EarTrumpet.UI.ViewModels
 {
-    public class AdditionalSettingsViewModel : SettingsPageViewModel
+    public class EarTrumpetAdditionalSettingsViewModel : SettingsPageViewModel
     {
         public ICommand RestoreHiddenApps { get; }
 
-        public AdditionalSettingsViewModel() : base(null)
+        public EarTrumpetAdditionalSettingsViewModel() : base(null)
         {
             Title = Resources.AdditionalSettingsTitle;
             Glyph = "\xE10C";

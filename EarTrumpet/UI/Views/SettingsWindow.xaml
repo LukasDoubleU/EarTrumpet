@@ -303,7 +303,7 @@
                 </Grid>
             </Grid>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type vm:AdditionalSettingsViewModel}">
+        <DataTemplate DataType="{x:Type vm:EarTrumpetAdditionalSettingsViewModel}">
             <StackPanel Orientation="Vertical">
                 <Grid>
                     <Grid.RowDefinitions>
