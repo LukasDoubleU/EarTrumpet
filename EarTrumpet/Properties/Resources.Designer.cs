@@ -486,11 +486,20 @@ namespace EarTrumpet.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Restore hidden apps.
+        ///   Looks up a localized string similar to Restore.
         /// </summary>
         public static string RestoreHiddenAppsButton {
             get {
                 return ResourceManager.GetString("RestoreHiddenAppsButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restore all apps that have been hidden using the garbage-bin-icon..
+        /// </summary>
+        public static string RestoreHiddenAppsDescription {
+            get {
+                return ResourceManager.GetString("RestoreHiddenAppsDescription", resourceCulture);
             }
         }
         
@@ -500,6 +509,15 @@ namespace EarTrumpet.Properties {
         public static string RestoreHiddenAppsDone {
             get {
                 return ResourceManager.GetString("RestoreHiddenAppsDone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restore hidden apps.
+        /// </summary>
+        public static string RestoreHiddenAppsTitle {
+            get {
+                return ResourceManager.GetString("RestoreHiddenAppsTitle", resourceCulture);
             }
         }
         

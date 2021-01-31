@@ -307,35 +307,66 @@
             <StackPanel Orientation="Vertical">
                 
                 <!-- CHANGE COMM DEVICE -->
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock 
-                        FontSize="15"
-                        Text="{x:Static resx:Resources.ChangeCommDeviceTitle}" />
-                    <CheckBox 
-                        IsChecked="{Binding Path=ChangeCommDevice}" />
-                </StackPanel>
-                <TextBlock  
-                    Theme:Brush.Foreground="GrayText"
-                    FontSize="12"
-                    TextWrapping="Wrap"
-                    Text="{x:Static resx:Resources.ChangeCommDeviceDescription}" />
+                <WrapPanel Margin="0, 0, 0, 10">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock 
+                            FontSize="15"
+                            Text="{x:Static resx:Resources.ChangeCommDeviceTitle}" />
+                        <CheckBox 
+                            IsChecked="{Binding Path=ChangeCommDevice}" />
+                    </StackPanel>
+                    <TextBlock  
+                        Theme:Brush.Foreground="GrayText"
+                        FontSize="12"
+                        TextWrapping="Wrap"
+                        Text="{x:Static resx:Resources.ChangeCommDeviceDescription}" />
+                </WrapPanel>
+                
+                <!-- PERSIST APP VOLUMES -->
+                <WrapPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock 
+                            FontSize="15"
+                            Text="{x:Static resx:Resources.PersistAppVolumeTitle}" />
+                        <CheckBox 
+                            IsChecked="{Binding Path=PersistAppVolumes}" />
+                    </StackPanel>
+                    <TextBlock  
+                        Theme:Brush.Foreground="GrayText"
+                        FontSize="12"
+                        TextWrapping="Wrap"
+                        Text="{x:Static resx:Resources.PersistAppVolumeDescription}" />
+                </WrapPanel>
                 
                 <!-- DEFAULT APP VOLUME -->
+                <!-- couldn't use a wrapPanel for this one as it destroyed the content of the inner dockPanel -->
                 <TextBlock 
+                    Margin="0, 30, 0, 0"
                     FontSize="15"
                     Text="{x:Static resx:Resources.DefaultAppVolumeTitle}" />
                 <DockPanel VerticalAlignment="Center" Margin="10">
-                    <TextBox Text="{Binding ElementName=slValue, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                    <Slider Minimum="0" Maximum="100" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" Name="slValue" Value="{Binding Path=DefaultAppVolume,Mode=TwoWay}" />
+                    <TextBox Text="{Binding ElementName=slValue, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="10" />
+                    <Slider Minimum="1" Maximum="100" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" Name="slValue" Value="{Binding Path=DefaultAppVolume,Mode=TwoWay}" />
                 </DockPanel>
                 <TextBlock  
+                    Margin="0, 0, 0, 10"
                     Theme:Brush.Foreground="GrayText"
                     FontSize="12"
                     TextWrapping="Wrap"
                     Text="{x:Static resx:Resources.DefaultAppVolumeDescription}" />
                 
                 <!-- RESTORE HIDDEN APPS -->
-                <Button Content="{x:Static resx:Resources.RestoreHiddenAppsButton}" Command="{Binding RestoreHiddenApps}"/>
+                <WrapPanel>
+                    <TextBlock 
+                        FontSize="15"
+                        Text="{x:Static resx:Resources.RestoreHiddenAppsTitle}" />
+                    <Button Content="{x:Static resx:Resources.RestoreHiddenAppsButton}" Command="{Binding RestoreHiddenApps}"/>
+                    <TextBlock  
+                        Theme:Brush.Foreground="GrayText"
+                        FontSize="12"
+                        TextWrapping="Wrap"
+                        Text="{x:Static resx:Resources.RestoreHiddenAppsDescription}" />
+                </WrapPanel>
             </StackPanel>
         </DataTemplate>
         <Style x:Key="SettingsListViewItem" TargetType="{x:Type ListViewItem}">

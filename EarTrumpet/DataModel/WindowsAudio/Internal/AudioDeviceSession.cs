@@ -375,11 +375,23 @@ namespace EarTrumpet.DataModel.WindowsAudio.Internal
             _volume = NewVolume;
             _isMuted = NewMute != 0;
             
+            PersistVolumeIfActive(NewVolume);
+
             _dispatcher.BeginInvoke((Action)(() =>
             {
                 RaisePropertyChanged(nameof(Volume));
                 RaisePropertyChanged(nameof(IsMuted));
             }));
+        }
+
+        void PersistVolumeIfActive(float NewVolume)
+        {
+            // Check if this functionality is active
+            var settings = StorageFactory.GetSettings("PersistVolume");
+            var persistAppVolumes = settings.Get("PersistAppVolumes", false);
+            if (!persistAppVolumes) return;
+            // Persist the app volume relative to the parent
+            settings.Set(Parent.DisplayName + "." + ExeName, NewVolume);
         }
 
         void IAudioSessionEvents.OnGroupingParamChanged(ref Guid NewGroupingParam, ref Guid EventContext)

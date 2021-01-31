@@ -9,7 +9,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Threading;
-using EarTrumpet.DataModel.Storage;
 
 namespace EarTrumpet.DataModel.WindowsAudio.Internal
 {
@@ -29,14 +28,11 @@ namespace EarTrumpet.DataModel.WindowsAudio.Internal
                 if (value != _default)
                 {
                     SetDefaultDevice(value, ERole.eMultimedia);
-                    // Change comm device as well depending on settings
-                    var changeCommDevice = StorageFactory.GetSettings().Get("ChangeCommDevice", false);
-                    if(changeCommDevice) SetDefaultDevice(value, ERole.eCommunications);
                     DefaultChanged?.Invoke(this, Default);
                 }
             }
         }
-        
+
 
         private EDataFlow Flow => _kind == AudioDeviceKind.Playback ? EDataFlow.eRender : EDataFlow.eCapture;
 

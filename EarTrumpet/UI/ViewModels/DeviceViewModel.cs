@@ -1,13 +1,14 @@
-﻿using EarTrumpet.DataModel.Audio;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Linq;
+using EarTrumpet.DataModel.Audio;
 using EarTrumpet.DataModel.Storage;
 using EarTrumpet.DataModel.WindowsAudio;
 using EarTrumpet.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Linq;
-using EarTrumpet.DataModel.Storage;
+using EarTrumpet.Properties;
 
 namespace EarTrumpet.UI.ViewModels
 {
@@ -23,8 +24,8 @@ namespace EarTrumpet.UI.ViewModels
         }
 
         public string DisplayName => _device.DisplayName;
-        public string AccessibleName => IsMuted ? Properties.Resources.AppOrDeviceMutedFormatAccessibleText.Replace("{Name}", DisplayName) :
-            Properties.Resources.AppOrDeviceFormatAccessibleText.Replace("{Name}", DisplayName).Replace("{Volume}", Volume.ToString());
+        public string AccessibleName => IsMuted ? Resources.AppOrDeviceMutedFormatAccessibleText.Replace("{Name}", DisplayName) :
+            Resources.AppOrDeviceFormatAccessibleText.Replace("{Name}", DisplayName).Replace("{Volume}", Volume.ToString());
         public string DeviceDescription => ((IAudioDeviceWindowsAudio)_device).DeviceDescription;
         public string EnumeratorName => ((IAudioDeviceWindowsAudio)_device).EnumeratorName;
         public string InterfaceName => ((IAudioDeviceWindowsAudio)_device).InterfaceName;
@@ -75,8 +76,9 @@ namespace EarTrumpet.UI.ViewModels
             foreach (var session in _device.Groups)
             {
                 var app = new AppItemViewModel(this, session);
-                if (!app.isHidden)
+                if (!app.IsHidden)
                 {
+                    RestorePersistedAppVolume(session.DisplayName, app);
                     ApplyDefaultAppVolume(app);
                     Apps.AddSorted(app, AppItemViewModel.CompareByExeName);   
                 }
@@ -91,7 +93,7 @@ namespace EarTrumpet.UI.ViewModels
             _device.Groups.CollectionChanged -= OnCollectionChanged;
         }
 
-        private void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(_device.IsMuted) ||
                 e.PropertyName == nameof(_device.Volume))
@@ -143,16 +145,16 @@ namespace EarTrumpet.UI.ViewModels
             }
         }
 
-        private void OnCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             switch (e.Action)
             {
-                case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+                case NotifyCollectionChangedAction.Add:
                     Debug.Assert(e.NewItems.Count == 1);
                     AddSession((IAudioDeviceSession)e.NewItems[0]);
                     break;
 
-                case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+                case NotifyCollectionChangedAction.Remove:
                     Debug.Assert(e.OldItems.Count == 1);
                     var existing = Apps.FirstOrDefault(x => x.Id == ((IAudioDeviceSession)e.OldItems[0]).Id);
                     if (existing != null)
@@ -182,11 +184,26 @@ namespace EarTrumpet.UI.ViewModels
                 }
             }
             
+            RestorePersistedAppVolume(DisplayName, newSession);
             ApplyDefaultAppVolume(newSession);
 
             if(!newSession.IsHidden)
             {
                 Apps.AddSorted(newSession, AppItemViewModel.CompareByExeName);
+            }
+        }
+        
+        private void RestorePersistedAppVolume(string deviceName, AppItemViewModel app)
+        {
+            var settings = StorageFactory.GetSettings("PersistVolume");
+            // Check if this functionality is active
+            var persistAppVolumes = settings.Get("PersistAppVolumes", false);
+            if (!persistAppVolumes) return;
+            // Restore the volume if it exists
+            var key = DisplayName + "." + app.ExeName;
+            if (settings.HasKey(key))
+            {
+                app.Volume = settings.Get(key, 1f).ToVolumeInt();
             }
         }
         
@@ -261,6 +278,6 @@ namespace EarTrumpet.UI.ViewModels
 
         public void MakeDefaultDevice() => _deviceManager.Default = _device;
         public void IncrementVolume(int delta) => Volume += delta;
-        public override string ToString() => string.Format(IsMuted ? Properties.Resources.AppOrDeviceMutedFormatAccessibleText : Properties.Resources.AppOrDeviceFormatAccessibleText, DisplayName, Volume);
+        public override string ToString() => string.Format(IsMuted ? Resources.AppOrDeviceMutedFormatAccessibleText : Resources.AppOrDeviceFormatAccessibleText, DisplayName, Volume);
     }
 }
